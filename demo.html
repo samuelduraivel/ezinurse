@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ezi Nurse App Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .glass-card { background: rgba(255, 255, 255, 0.9); border: 1px solid #e2e8f0; }
+        .blue-gradient { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+        .flashcard-inner { transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; position: relative; width: 100%; height: 100%; }
+        .flipped { transform: rotateY(180deg); }
+        .backface-hidden { backface-visibility: hidden; position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 pb-20">
+
+    <header class="bg-white py-12 px-6 text-center border-b border-gray-100">
+        <h1 class="text-4xl font-extrabold text-blue-700 mb-2">Ezi Nurse</h1>
+        <p class="text-gray-500 max-w-md mx-auto">Access your notes, demos, and practice tools in one place.</p>
+    </header>
+
+    <main class="max-w-3xl mx-auto p-6 space-y-12">
+
+        <section>
+            <h2 class="text-xl font-bold text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">Course Materials</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <a href="https://drive.google.com/file/d/1G2Hc2apEgDuu-D4ceCOKMNQWQNgWsHiJ/view?usp=drive_link" target="_blank" class="flex items-center p-4 glass-card rounded-xl hover:shadow-md transition group">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fas fa-play"></i></div>
+                    <span class="font-bold">Demo Video I</span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1PPMXyWlFzJP32sd4SoPBqLpGshPuXhAV/view?usp=drive_link" target="_blank" class="flex items-center p-4 glass-card rounded-xl hover:shadow-md transition group">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fas fa-play"></i></div>
+                    <span class="font-bold">Demo Video II</span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1q8g6TL1yf5prxi5_ZmJunEP--5N5gHYe/view?usp=drive_link" target="_blank" class="flex items-center p-4 glass-card rounded-xl hover:shadow-md transition group">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4 group-hover:bg-blue-600 group-hover:text-white transition"><i class="fas fa-film"></i></div>
+                    <span class="font-bold">Demo Short Video</span>
+                </a>
+
+                <a href="https://drive.google.com/file/d/1Ymf7HU9PRwpUylcdyYywGdFxGeknMvhR/view?usp=drive_link" target="_blank" class="flex items-center p-4 glass-card rounded-xl hover:shadow-md transition group">
+                    <div class="bg-green-100 p-3 rounded-full mr-4 group-hover:bg-green-600 group-hover:text-white transition"><i class="fas fa-book"></i></div>
+                    <span class="font-bold">Complete Notes</span>
+                </a>
+
+                <a href="https://docs.google.com/presentation/d/1yzh5SNkpPqNOrH8zX_1wCwjF1qFw8P_-/edit?usp=drive_link&ouid=101950797409268094419&rtpof=true&sd=true" target="_blank" class="flex items-center p-4 glass-card rounded-xl hover:shadow-md transition group">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4 group-hover:bg-purple-600 group-hover:text-white transition"><i class="fas fa-bolt"></i></div>
+                    <span class="font-bold">Ezi Notes</span>
+                </a>
+
+                <a href="https://docs.google.com/presentation/d/1vIbmWr3FEh4X1h-UPEfL4m-DXBuM6ZJO/edit?usp=drive_link&ouid=101950797409268094419&rtpof=true&sd=true" target="_blank" class="flex items-center p-4 glass-card rounded-xl hover:shadow-md transition group">
+                    <div class="bg-purple-100 p-3 rounded-full mr-4 group-hover:bg-purple-600 group-hover:text-white transition"><i class="fas fa-bolt"></i></div>
+                    <span class="font-bold">Ezi Notes</span>
+                </a>
+
+            </div>
+        </section>
+
+        <section class="bg-white rounded-3xl p-6 shadow-xl border border-blue-50">
+            <div class="text-center mb-6">
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full uppercase">Knowledge Check</span>
+                <h2 class="text-2xl font-bold mt-2">Nursing Quiz (10 Questions)</h2>
+                <p id="score-display" class="text-blue-600 font-bold mt-1">Question 1/10</p>
+            </div>
+            
+            <div id="quiz-container">
+                </div>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold text-center text-gray-800 mb-6">Study Flashcards (10 Terms)</h2>
+            <div id="flashcard-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- 10 QUIZ QUESTIONS ---
+        const questions = [
+            { q: "1. What is the normal adult resting heart rate?", a: ["60-100 bpm", "40-60 bpm", "100-120 bpm"], correct: 0 },
+            { q: "2. Which organ is primarily responsible for insulin production?", a: ["Liver", "Pancreas", "Kidney"], correct: 1 },
+            { q: "3. What is the standard gauge for a blood transfusion needle?", a: ["22G", "24G", "18G"], correct: 2 },
+            { q: "4. Hypoglycemia refers to:", a: ["High blood pressure", "Low blood sugar", "High fever"], correct: 1 },
+            { q: "5. The 'Lub-Dub' sound of the heart is caused by:", a: ["Valve closure", "Blood flow", "Muscle contraction"], correct: 0 },
+            { q: "6. Which is the most common site for a pulse check in an adult?", a: ["Radial", "Carotid", "Brachial"], correct: 0 },
+            { q: "7. PPE stands for:", a: ["Private Patient Entry", "Personal Protective Equipment", "Primary Patient Evaluation"], correct: 1 },
+            { q: "8. What is the universal blood donor type?", a: ["AB+", "O-", "A-"], correct: 1 },
+            { q: "9. Dyspnea is defined as:", a: ["Difficulty swallowing", "Difficulty breathing", "Loss of speech"], correct: 1 },
+            { q: "10. Which part of the brain controls balance?", a: ["Cerebrum", "Cerebellum", "Brainstem"], correct: 1 }
+        ];
+
+        let currentQ = 0;
+        const quizBox = document.getElementById('quiz-container');
+        const scoreBox = document.getElementById('score-display');
+
+        function loadQuestion() {
+            const data = questions[currentQ];
+            quizBox.innerHTML = `
+                <div class="animate-fade-in">
+                    <p class="font-medium mb-4 text-gray-800 text-lg">${data.q}</p>
+                    <div class="grid grid-cols-1 gap-3">
+                        ${data.a.map((opt, i) => `
+                            <button onclick="handleAnswer(${i === data.correct}, this)" class="text-left p-4 rounded-xl border border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all font-medium">${opt}</button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            scoreBox.innerText = `Question ${currentQ + 1}/10`;
+        }
+
+        function handleAnswer(isCorrect, btn) {
+            // Disable all buttons
+            const buttons = quizBox.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+
+            // Highlight answer
+            btn.classList.remove('hover:bg-blue-50', 'border-gray-200');
+            if (isCorrect) {
+                btn.classList.add('bg-green-500', 'text-white', 'border-green-600');
+            } else {
+                btn.classList.add('bg-red-500', 'text-white', 'border-red-600');
+            }
+
+            // Next question delay
+            setTimeout(() => {
+                currentQ++;
+                if (currentQ < questions.length) {
+                    loadQuestion();
+                } else {
+                    quizBox.innerHTML = `
+                        <div class="text-center py-10">
+                            <div class="text-5xl text-blue-600 mb-4"><i class="fas fa-check-circle"></i></div>
+                            <h3 class="text-xl font-bold">Quiz Complete!</h3>
+                            <button onclick="location.reload()" class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg font-bold">Restart Quiz</button>
+                        </div>
+                    `;
+                    scoreBox.innerText = "Completed";
+                }
+            }, 1000);
+        }
+
+        // --- 10 FLASHCARDS ---
+        const terms = [
+            { t: "Tachycardia", d: "Heart rate > 100 bpm" },
+            { t: "Bradycardia", d: "Heart rate < 60 bpm" },
+            { t: "Hypertension", d: "High blood pressure" },
+            { t: "Apnea", d: "Cessation of breathing" },
+            { t: "Cyanosis", d: "Bluish skin tint due to low oxygen" },
+            { t: "Edema", d: "Swelling caused by fluid in tissues" },
+            { t: "Febrile", d: "Relating to a fever" },
+            { t: "Hematoma", d: "A solid swelling of clotted blood" },
+            { t: "Ischemia", d: "Inadequate blood supply to an organ" },
+            { t: "Sepsis", d: "Body's extreme response to infection" }
+        ];
+
+        const flashContainer = document.getElementById('flashcard-grid');
+        
+        terms.forEach(item => {
+            const cardHTML = `
+                <div class="h-40 w-full [perspective:1000px] cursor-pointer group">
+                    <div class="flashcard-inner w-full h-full shadow-md rounded-xl bg-white" onclick="this.classList.toggle('flipped')">
+                        <div class="backface-hidden flex flex-col items-center justify-center border-2 border-blue-100 rounded-xl hover:border-blue-300 transition">
+                            <i class="fas fa-question-circle text-blue-200 mb-2 text-xl"></i>
+                            <span class="text-lg font-bold text-gray-800">${item.t}</span>
+                            <span class="text-xs text-gray-400 mt-1">Tap to flip</span>
+                        </div>
+                        <div class="backface-hidden rotate-y-180 flex items-center justify-center blue-gradient text-white rounded-xl px-4 text-center">
+                            <p class="font-medium">${item.d}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            flashContainer.insertAdjacentHTML('beforeend', cardHTML);
+        });
+
+        // Initialize
+        loadQuestion();
+    </script>
+</body>
+</html>

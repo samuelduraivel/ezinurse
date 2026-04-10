@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization for "Best App for Nursing Students" -->
+    <title>Best App for Nursing Students | Ezi Nurse - MSc, BSc, GNM & PBBSc</title>
+    <meta name="description" content="Ezi Nurse is the best app for nursing students offering video lectures, 3D anatomical models, PDF notes, and placement assistance for MSc, BSc, PBBSc, and GNM students.">
+    <meta name="keywords" content="Best App for Nursing Students, Nursing App India, GNM Nursing App, BSc Nursing App, MSc Nursing Classes, Ezi Nurse, Nursing Notes App">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Configuration for Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#003b82',   /* Deep Blue */
+                            light: '#00b9f2',  /* Bright Cyan/Blue */
+                            black: '#000000',
+                            gray: '#f3f4f6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Utilities */
+        .hero-bg {
+            background: linear-gradient(135deg, #003b82 0%, #001f4d 100%);
+            position: relative;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Smooth reveal animation classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Flashy 3D Animation */
+        @keyframes spin-3d-y {
+            0% { transform: perspective(500px) rotateY(0deg); }
+            50% { transform: perspective(500px) rotateY(180deg); }
+            100% { transform: perspective(500px) rotateY(360deg); }
+        }
+        
+        .animate-3d-spin {
+            animation: spin-3d-y 4s linear infinite;
+            display: inline-block;
+            transform-style: preserve-3d;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md" id="navbar">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" onclick="switchView('home'); return false;" class="flex items-center gap-2 group">
+                    <!-- Image -->
+                    <img src="ezinurse.png" alt="Ezi Nurse Logo" class="h-10 w-auto group-hover:scale-105 transition duration-300">
+                    <!-- App Name Text -->
+                    <div class="text-2xl font-bold text-brand-dark tracking-tight">
+                        Ezi<span class="text-brand-light">Nurse</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" onclick="switchView('home'); return false;" class="text-brand-dark font-medium hover:text-brand-light transition">Home</a>
+                    <a href="#courses" onclick="navigateToSection('courses'); return false;" class="text-brand-dark font-medium hover:text-brand-light transition">Courses</a>
+                    <a href="#blog" onclick="switchView('blog'); return false;" class="text-brand-dark font-medium hover:text-brand-light transition">Blog</a>
+                    <a href="#features" onclick="navigateToSection('features'); return false;" class="text-brand-dark font-medium hover:text-brand-light transition">Features</a>
+                    <a href="#mentorship" onclick="navigateToSection('mentorship'); return false;" class="text-brand-dark font-medium hover:text-brand-light transition">Mentorship</a>
+                    <a href="#contact" onclick="navigateToSection('contact'); return false;" class="text-brand-dark font-medium hover:text-brand-light transition">Contact</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" target="_blank" class="bg-brand-light text-white px-6 py-2 rounded-full font-semibold hover:bg-brand-dark transition shadow-lg transform hover:-translate-y-0.5 flex items-center">
+                        <i class="fab fa-google-play mr-2"></i>Download App
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-brand-dark text-2xl focus:outline-none p-2" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 max-h-[80vh] overflow-y-auto shadow-xl">
+            <div class="flex flex-col px-6 py-6 space-y-4">
+                <a href="#" onclick="switchView('home'); toggleMobileMenu(); return false;" class="text-brand-dark font-medium text-lg border-b border-gray-50 pb-2">Home</a>
+                <a href="#courses" onclick="navigateToSection('courses'); toggleMobileMenu(); return false;" class="text-brand-dark font-medium text-lg border-b border-gray-50 pb-2">Courses</a>
+                <a href="#blog" onclick="switchView('blog'); toggleMobileMenu(); return false;" class="text-brand-dark font-medium text-lg border-b border-gray-50 pb-2">Blog</a>
+                <a href="#features" onclick="navigateToSection('features'); toggleMobileMenu(); return false;" class="text-brand-dark font-medium text-lg border-b border-gray-50 pb-2">Features</a>
+                <a href="#mentorship" onclick="navigateToSection('mentorship'); toggleMobileMenu(); return false;" class="text-brand-dark font-medium text-lg border-b border-gray-50 pb-2">Mentorship</a>
+                <a href="#contact" onclick="navigateToSection('contact'); toggleMobileMenu(); return false;" class="text-brand-dark font-medium text-lg border-b border-gray-50 pb-2">Contact</a>
+                <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" class="bg-brand-light text-white font-bold text-center py-3 rounded-lg mt-2 shadow-md flex justify-center items-center">
+                    <i class="fab fa-google-play mr-2"></i> Download App
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- WRAPPER FOR LANDING PAGE CONTENT -->
+    <div id="landing-view">
+    
+    <!-- Hero Section -->
+    <!-- Optimized padding for mobile (pb-32) and desktop (pb-48) -->
+    <header class="hero-bg min-h-screen flex items-center relative pt-24 pb-32 md:pb-48 overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Text Content -->
+                <div class="lg:w-1/2 text-center lg:text-left">
+                    <div class="inline-block bg-brand-light bg-opacity-20 backdrop-blur-sm border border-brand-light/30 rounded-full px-4 py-1 mb-6">
+                        <span class="text-brand-light font-bold text-sm uppercase tracking-wider">#1 EdTech for Nurses</span>
+                    </div>
+                    <!-- Responsive Text Sizes -->
+                    <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                        Master Nursing Concepts with <span class="text-brand-light">Confidence.</span>
+                    </h1>
+                    <p class="text-base md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto lg:mx-0">
+                        Comprehensive video lectures, 3D anatomical models, and expert mentorship for MSc, BSc, PBBSc, and GNM students. Discover why we are the <strong>Best App for Nursing Students</strong>.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" target="_blank" class="bg-brand-light text-white text-center px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-brand-dark transition shadow-xl ring-2 ring-brand-light ring-offset-2 ring-offset-brand-dark flex items-center justify-center">
+                            <i class="fab fa-google-play mr-2"></i> Get the App
+                        </a>
+                        <a href="#courses" class="bg-transparent border-2 border-white text-white text-center px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-brand-dark transition">
+                            Explore Courses
+                        </a>
+                    </div>
+                    
+                    <div class="mt-12 flex items-center gap-4 text-white/80 text-sm justify-center lg:justify-start">
+                        <div class="flex -space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-brand-dark flex items-center justify-center text-xs text-brand-dark font-bold overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Student">
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-brand-dark flex items-center justify-center text-xs text-brand-dark font-bold overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Student">
+                            </div>
+                            <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-brand-dark flex items-center justify-center text-xs text-brand-dark font-bold overflow-hidden">
+                                <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student">
+                            </div>
+                        </div>
+                        <p class="z-30 relative font-medium">Trusted by thousands of nursing students.</p>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="lg:w-1/2 relative reveal active mt-8 lg:mt-0 px-4 lg:px-0">
+                    <div class="relative z-10 rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white/20 transform rotate-2 hover:rotate-0 transition duration-500">
+                         <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Happy Nursing Student using Ezi Nurse App" class="w-full h-auto object-cover">
+                         
+                         <!-- Floating Badge -->
+                         <div class="absolute bottom-4 left-4 md:bottom-6 md:left-6 bg-white/95 backdrop-blur rounded-xl p-3 md:p-4 shadow-lg max-w-[200px] md:max-w-xs border-l-4 border-brand-light">
+                             <div class="flex items-center gap-3">
+                                 <div class="bg-green-100 p-2 rounded-full text-green-600">
+                                     <i class="fa-solid fa-check-circle"></i>
+                                 </div>
+                                 <div>
+                                     <p class="text-brand-dark font-bold text-sm">Exam Ready!</p>
+                                     <p class="text-gray-500 text-xs">Based on latest INC syllabus</p>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+                    
+                    <!-- Decorative Elements behind image -->
+                    <div class="absolute -top-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-brand-light rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 md:w-32 md:h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative Wave -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+            <svg class="relative block w-full h-[60px] md:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12 md:mb-16 reveal">
+                <span class="text-brand-light font-bold uppercase tracking-wider text-sm">Curriculum</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-2">Tailored for Every Nursing Journey</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Whether you are starting your GNM or specializing with an MSc, Ezi Nurse provides the specific materials you need to excel.</p>
+            </div>
+
+            <!-- Optimized Grid Gap for Mobile -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Course Card 1 -->
+                <div class="reveal group bg-white border border-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+                    <div class="h-2 bg-brand-dark w-full"></div>
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-light transition-colors duration-300">
+                            <i class="fa-solid fa-user-graduate text-2xl text-brand-dark group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">BSc Nursing</h3>
+                        <p class="text-gray-600 text-sm mb-6">Comprehensive 4-year curriculum coverage with anatomy models and practical notes.</p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Year-wise Subjects</li>
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Video Lectures</li>
+                        </ul>
+                        <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" class="text-brand-light font-bold text-sm hover:text-brand-dark flex items-center">Start Learning <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div class="reveal group bg-white border border-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+                    <div class="h-2 bg-brand-light w-full"></div>
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-light transition-colors duration-300">
+                            <i class="fa-solid fa-stethoscope text-2xl text-brand-dark group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">GNM Nursing</h3>
+                        <p class="text-gray-600 text-sm mb-6">Focus on General Nursing and Midwifery with simplified explanations and diagrams.</p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Practical Guides</li>
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Hindi/English Mix</li>
+                        </ul>
+                        <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" class="text-brand-light font-bold text-sm hover:text-brand-dark flex items-center">Start Learning <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div class="reveal group bg-white border border-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+                    <div class="h-2 bg-brand-dark w-full"></div>
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-light transition-colors duration-300">
+                            <i class="fa-solid fa-book-medical text-2xl text-brand-dark group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">PBBSc Nursing</h3>
+                        <p class="text-gray-600 text-sm mb-6">Bridge courses designed for working professionals looking to upgrade skills.</p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Flexible Timing</li>
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Advanced Topics</li>
+                        </ul>
+                        <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" class="text-brand-light font-bold text-sm hover:text-brand-dark flex items-center">Start Learning <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 -->
+                <div class="reveal group bg-white border border-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden relative">
+                    <div class="h-2 bg-brand-light w-full"></div>
+                    <div class="p-8">
+                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-light transition-colors duration-300">
+                            <i class="fa-solid fa-award text-2xl text-brand-dark group-hover:text-white transition-colors"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">MSc Nursing</h3>
+                        <p class="text-gray-600 text-sm mb-6">In-depth specialization modules for clinical research and advanced practice.</p>
+                        <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Research Papers</li>
+                            <li><i class="fa-solid fa-check text-brand-light mr-2"></i>Thesis Support</li>
+                        </ul>
+                        <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" class="text-brand-light font-bold text-sm hover:text-brand-dark flex items-center">Start Learning <i class="fa-solid fa-arrow-right ml-2"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Best App Section (SEO Rich) -->
+    <section id="features" class="py-16 md:py-20 bg-gray-50 relative overflow-hidden">
+        <!-- Blobs for background -->
+        <div class="blob bg-brand-light w-96 h-96 top-0 right-0 -mr-20 -mt-20"></div>
+        <div class="blob bg-brand-dark w-96 h-96 bottom-0 left-0 -ml-20 -mb-20"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <span class="text-brand-light font-bold uppercase tracking-wider text-sm">Features</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-2 mb-6">Why we are the <br>Best App for Nursing Students</h2>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Ezi Nurse isn't just a textbook replacer; it's a complete ecosystem designed to make complex medical concepts easy to visualize and understand.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-dark text-white flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-video"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-brand-dark">HD Video Lectures</h4>
+                                <p class="text-gray-600">Expert-led sessions breaking down complex physiology and pharmacology topics.</p>
+                            </div>
+                        </div>
+
+                        <!-- Animated 3D Model Feature -->
+                        <div class="flex items-start group">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-light text-white flex items-center justify-center mt-1 relative">
+                                <div class="absolute inset-0 bg-brand-light rounded-full animate-ping opacity-20"></div>
+                                <i class="fa-solid fa-cubes animate-3d-spin"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-brand-dark group-hover:text-brand-light transition-colors">3D Anatomical Models</h4>
+                                <p class="text-gray-600">Interactive 3D visualizations to learn anatomy like never before.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-dark text-white flex items-center justify-center mt-1">
+                                <i class="fa-solid fa-file-pdf"></i>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-brand-dark">PDF Materials & Notes</h4>
+                                <p class="text-gray-600">Downloadable high-yield notes optimized for last-minute revision.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="reveal relative mt-16 lg:mt-0 flex justify-center">
+                    <!-- Phone Mockup Wrapper with Mobile Scaling -->
+                    <!-- transform scale-[0.85] ensures it fits on 320px width screens -->
+                    <div class="transform scale-[0.85] sm:scale-100 origin-center">
+                        <div class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-2xl">
+                            <div class="h-[32px] w-[3px] bg-gray-800 absolute -left-[17px] top-[72px] rounded-l-lg"></div>
+                            <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[124px] rounded-l-lg"></div>
+                            <div class="h-[46px] w-[3px] bg-gray-800 absolute -left-[17px] top-[178px] rounded-l-lg"></div>
+                            <div class="h-[64px] w-[3px] bg-gray-800 absolute -right-[17px] top-[142px] rounded-r-lg"></div>
+                            <div class="rounded-[2rem] overflow-hidden w-full h-full bg-gray-50">
+                                 <!-- App Content Mockup -->
+                                 <div class="flex flex-col h-full">
+                                    <!-- App Header -->
+                                    <div class="bg-brand-dark p-6 pt-10 pb-6 text-white rounded-b-3xl shadow-lg relative z-10">
+                                        <div class="flex justify-between items-center mb-6">
+                                            <i class="fa-solid fa-bars text-lg opacity-80"></i>
+                                            <div class="flex gap-4 text-lg opacity-80">
+                                                <i class="fa-regular fa-bell"></i>
+                                                <div class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center text-xs">
+                                                    <i class="fa-solid fa-user"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h4 class="font-bold text-xl">Hi, Future Nurse</h4>
+                                        <p class="text-xs text-brand-light font-medium mt-1">Continue your preparation</p>
+                                        
+                                        <!-- Search Bar Simulation -->
+                                        <div class="mt-4 bg-white/10 rounded-lg h-8 flex items-center px-3 border border-white/10">
+                                            <i class="fa-solid fa-search text-xs text-white/50 mr-2"></i>
+                                            <div class="h-1.5 w-24 bg-white/20 rounded-full"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Scrollable Course Content -->
+                                    <div class="flex-1 overflow-hidden relative">
+                                        <div class="absolute inset-0 overflow-y-auto p-4 space-y-3 pb-8">
+                                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wide mb-2">My Courses</p>
+                                            
+                                            <!-- Video Lecture Card -->
+                                            <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3 transform hover:scale-105 transition duration-200 cursor-pointer">
+                                                 <div class="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center text-red-500 shrink-0 shadow-sm">
+                                                     <i class="fa-solid fa-play-circle text-lg"></i>
+                                                 </div>
+                                                 <div class="flex-1 min-w-0">
+                                                     <h5 class="text-sm font-bold text-gray-800 truncate">Cardiac Anatomy</h5>
+                                                     <div class="flex items-center gap-2 mt-0.5">
+                                                         <span class="text-[10px] bg-red-100 text-red-600 px-1.5 py-0.5 rounded">Video</span>
+                                                         <p class="text-[10px] text-gray-400">45 mins</p>
+                                                     </div>
+                                                 </div>
+                                                 <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                                            </div>
+
+                                            <!-- PDF Material Card -->
+                                            <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3 transform hover:scale-105 transition duration-200 cursor-pointer">
+                                                 <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-blue-500 shrink-0 shadow-sm">
+                                                     <i class="fa-solid fa-file-pdf text-lg"></i>
+                                                 </div>
+                                                 <div class="flex-1 min-w-0">
+                                                     <h5 class="text-sm font-bold text-gray-800 truncate">Pharmacology Notes</h5>
+                                                     <div class="flex items-center gap-2 mt-0.5">
+                                                         <span class="text-[10px] bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded">PDF</span>
+                                                         <p class="text-[10px] text-gray-400">Unit 3</p>
+                                                     </div>
+                                                 </div>
+                                                 <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                                            </div>
+
+                                            <!-- Quiz Card -->
+                                            <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3 transform hover:scale-105 transition duration-200 cursor-pointer">
+                                                 <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-500 shrink-0 shadow-sm">
+                                                     <i class="fa-solid fa-clipboard-check text-lg"></i>
+                                                 </div>
+                                                 <div class="flex-1 min-w-0">
+                                                     <h5 class="text-sm font-bold text-gray-800 truncate">Surgical Quiz</h5>
+                                                     <div class="flex items-center gap-2 mt-0.5">
+                                                         <span class="text-[10px] bg-green-100 text-green-600 px-1.5 py-0.5 rounded">Test</span>
+                                                         <p class="text-[10px] text-gray-400">20 Questions</p>
+                                                     </div>
+                                                 </div>
+                                                 <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                                            </div>
+                                            
+                                            <!-- 3D Model Card -->
+                                            <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center gap-3 transform hover:scale-105 transition duration-200 cursor-pointer group">
+                                                 <div class="w-10 h-10 rounded-full bg-purple-50 flex items-center justify-center text-purple-500 shrink-0 shadow-sm overflow-hidden">
+                                                     <i class="fa-solid fa-cube text-lg group-hover:animate-3d-spin"></i>
+                                                 </div>
+                                                 <div class="flex-1 min-w-0">
+                                                     <h5 class="text-sm font-bold text-gray-800 truncate">Skeleton 3D Model</h5>
+                                                     <div class="flex items-center gap-2 mt-0.5">
+                                                         <span class="text-[10px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded">3D</span>
+                                                         <p class="text-[10px] text-gray-400">Interactive</p>
+                                                     </div>
+                                                 </div>
+                                                 <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                                            </div>
+                                            
+                                            <!-- Bottom Nav Simulation -->
+                                            <div class="h-10"></div>
+                                        </div>
+                                        
+                                        <!-- Sticky Bottom Nav -->
+                                        <div class="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-3 flex justify-around items-center z-20">
+                                            <div class="flex flex-col items-center text-brand-dark">
+                                                <i class="fa-solid fa-house text-lg"></i>
+                                                <span class="text-[8px] font-bold mt-1">Home</span>
+                                            </div>
+                                            <div class="flex flex-col items-center text-gray-400">
+                                                <i class="fa-solid fa-book-open text-lg"></i>
+                                                <span class="text-[8px] font-medium mt-1">Learn</span>
+                                            </div>
+                                            <div class="flex flex-col items-center text-gray-400">
+                                                <i class="fa-solid fa-trophy text-lg"></i>
+                                                <span class="text-[8px] font-medium mt-1">Quiz</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="mentorship" class="py-16 md:py-20 bg-brand-dark text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="reveal p-6 border border-brand-light/30 rounded-xl bg-white/5 backdrop-blur-sm">
+                    <i class="fa-solid fa-clipboard-question text-4xl text-brand-light mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Previous Question Papers</h3>
+                    <p class="text-gray-300">Access over 10 years of solved question papers to prepare for exams.</p>
+                </div>
+                <div class="reveal p-6 border border-brand-light/30 rounded-xl bg-white/5 backdrop-blur-sm" style="transition-delay: 100ms;">
+                    <i class="fa-solid fa-users text-4xl text-brand-light mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Individual Mentorship</h3>
+                    <p class="text-gray-300">Get 1-on-1 guidance from experienced nursing tutors and seniors.</p>
+                </div>
+                <div class="reveal p-6 border border-brand-light/30 rounded-xl bg-white/5 backdrop-blur-sm" style="transition-delay: 200ms;">
+                    <i class="fa-solid fa-briefcase text-4xl text-brand-light mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Placement Assistance</h3>
+                    <p class="text-gray-300">We help you land your dream job at top hospitals after graduation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="bg-gradient-to-r from-brand-light to-blue-500 rounded-3xl p-8 md:p-16 text-center text-white shadow-2xl reveal relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to Ace Your Exams?</h2>
+                    <p class="text-xl mb-8 opacity-90">Join thousands of students on the best app for nursing education.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" target="_blank" class="inline-block bg-brand-dark text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-dark transition shadow-lg">
+                        Download Now <i class="fa-solid fa-download ml-2"></i>
+                    </a>
+                </div>
+                <i class="fa-solid fa-user-nurse absolute -bottom-10 -right-10 text-9xl text-white opacity-20 transform -rotate-12"></i>
+            </div>
+        </div>
+    </section>
+    </div> <!-- END LANDING VIEW WRAPPER -->
+
+    <!-- BLOG VIEW (Hidden by default) -->
+    <div id="blog-view" class="hidden pt-24 w-full h-screen bg-white">
+    <iframe 
+        src="blog.html" 
+        class="w-full h-[calc(100vh-6rem)] border-none" 
+        title="Nursing Blog"
+        referrerpolicy="strict-origin-when-cross-origin">
+    </iframe>
+</div>
+    <!-- PRIVACY POLICY VIEW (Hidden by default) -->
+    <div id="privacy-view" class="hidden pt-24 pb-20 bg-gray-50 min-h-screen">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg">
+                <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-8 border-b pb-4">Privacy Policy</h1>
+                
+                <div class="prose prose-blue max-w-none text-gray-600 space-y-6">
+                    <p class="font-medium text-sm text-gray-400 uppercase">Last Updated: October 2024</p>
+                    
+                    <p>At Ezi Nurse ("we," "our," or "us"), we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use the Ezi Nurse mobile application and website.</p>
+                    
+                    <h3 class="text-xl font-bold text-brand-dark">1. Information We Collect</h3>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li><strong>Personal Information:</strong> When you register, we may collect your name, email address, phone number, and educational details (e.g., college name, course year).</li>
+                        <li><strong>Usage Data:</strong> We track your learning progress, including video watch time, quiz scores, and app interactions to provide personalized recommendations.</li>
+                        <li><strong>Device Information:</strong> We may collect information about your device, such as model, operating system, and unique identifiers, to ensure app compatibility.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold text-brand-dark">2. How We Use Your Information</h3>
+                    <p>We use your data to:</p>
+                    <ul class="list-disc pl-5 space-y-2">
+                        <li>Provide and maintain our educational services.</li>
+                        <li>Personalize your learning experience and mentorship.</li>
+                        <li>Send important updates, exam notifications, and course recommendations.</li>
+                        <li>Improve our app functionality and fix technical issues.</li>
+                    </ul>
+
+                    <h3 class="text-xl font-bold text-brand-dark">3. Data Security</h3>
+                    <p>We implement industry-standard security measures, including encryption and secure servers, to protect your data from unauthorized access. We do not sell your personal information to third parties.</p>
+
+                    <h3 class="text-xl font-bold text-brand-dark">4. Contact Us</h3>
+                    <p>If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@ezinurse.com" class="text-brand-light underline">support@ezinurse.com</a>.</p>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t">
+                    <a href="#" onclick="switchView('home'); return false;" class="text-brand-dark font-bold hover:text-brand-light"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TERMS OF SERVICE VIEW (Hidden by default) -->
+    <div id="terms-view" class="hidden pt-24 pb-20 bg-gray-50 min-h-screen">
+        <div class="container mx-auto px-6 max-w-4xl">
+             <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg">
+                <h1 class="text-3xl md:text-4xl font-bold text-brand-dark mb-8 border-b pb-4">Terms of Service</h1>
+                
+                <div class="prose prose-blue max-w-none text-gray-600 space-y-6">
+                    <p class="font-medium text-sm text-gray-400 uppercase">Last Updated: October 2024</p>
+                    
+                    <p>Welcome to Ezi Nurse. By accessing or using our mobile application and website, you agree to be bound by these Terms of Service. Please read them carefully.</p>
+                    
+                    <h3 class="text-xl font-bold text-brand-dark">1. Acceptance of Terms</h3>
+                    <p>By creating an account or using our services, you agree to comply with these terms. If you do not agree, you may not use the Ezi Nurse platform.</p>
+
+                    <h3 class="text-xl font-bold text-brand-dark">2. User Accounts</h3>
+                    <p>You are responsible for maintaining the confidentiality of your account credentials. You agree to provide accurate and complete information during registration. Ezi Nurse reserves the right to suspend accounts that provide false information or violate our policies.</p>
+
+                    <h3 class="text-xl font-bold text-brand-dark">3. Intellectual Property</h3>
+                    <p>All content on Ezi Nurse, including video lectures, PDF notes, 3D models, and quizzes, is the intellectual property of Ezi Nurse. You are granted a limited, non-exclusive license to access this content for personal, non-commercial educational use only. Unlawful distribution or sharing of our materials is strictly prohibited.</p>
+
+                    <h3 class="text-xl font-bold text-brand-dark">4. Payments and Refunds</h3>
+                    <p>Course fees are billed as per the plan selected. We offer a 7-day refund policy for technical issues that cannot be resolved by our support team. Refund requests must be submitted via email.</p>
+
+                    <h3 class="text-xl font-bold text-brand-dark">5. Limitation of Liability</h3>
+                    <p>Ezi Nurse is an educational aid and does not guarantee specific exam results. We are not liable for any indirect or consequential damages arising from your use of the service.</p>
+                </div>
+                
+                <div class="mt-8 pt-6 border-t">
+                    <a href="#" onclick="switchView('home'); return false;" class="text-brand-dark font-bold hover:text-brand-light"><i class="fa-solid fa-arrow-left mr-2"></i> Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-brand-dark text-white pt-16 pb-8 border-t border-brand-light/20">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <a href="#" onclick="switchView('home'); return false;" class="flex items-center gap-2 mb-4 group">
+                        <!-- Logo Image -->
+                        <img src="ezinurse.png" alt="Ezi Nurse Logo" class="h-12 w-auto bg-white rounded-lg p-1">
+                        <!-- Fallback Text (Visible if image fails to load in preview, otherwise image takes precedence) -->
+                        <span class="text-2xl font-bold group-hover:text-brand-light transition">Ezi<span class="text-brand-light group-hover:text-white transition">Nurse</span></span>
+                    </a>
+                    <p class="text-gray-400 mb-6">
+                        Empowering the caregivers of tomorrow with world-class digital education.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/people/Ezinurse/61573264140272/#" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-light transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/ezi_nurse/" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-light transition"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCFY2hc80poA0CnR6BHq0oSw" target="_blank" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-light transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-brand-light">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#courses" onclick="navigateToSection('courses'); return false;" class="hover:text-white transition cursor-pointer">Courses</a></li>
+                        <li><a href="#features" onclick="navigateToSection('features'); return false;" class="hover:text-white transition cursor-pointer">App Features</a></li>
+                        <li><a href="#" onclick="switchView('privacy'); return false;" class="hover:text-white transition cursor-pointer">Privacy Policy</a></li>
+                        <li><a href="#" onclick="switchView('terms'); return false;" class="hover:text-white transition cursor-pointer">Terms of Service</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-brand-light">Contact Us</h4>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-brand-light"></i>
+                            <span>Address 22, 1st Main Road, Nagarbhavi Village, Nagarbhavi, Bangalore, Karnataka, India - 560072</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-envelope mr-3 text-brand-light"></i>
+                            <a href="mailto:support@ezinurse.com">support@ezinurse.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone mr-3 text-brand-light"></i>
+                            <a href="tel:07090993333">070909 93333</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- QR Code (Simulated) -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-brand-light">Get the App</h4>
+                    <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" target="_blank" class="bg-white p-2 inline-block rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg cursor-pointer group">
+                        <!-- Simulated QR Code visual using CSS borders/grid -->
+                        <img src="qr.jpeg" alt="Scan to Download App" class="w-32 h-32 object-contain border-2 border-black bg-gray-100 group-hover:bg-blue-50 transition">
+                    </a>
+                    <p class="text-xs text-gray-400 mt-2">Scan or click to download</p>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2024 Ezi Nurse. All rights reserved. | Best App for Nursing Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // View Switching Logic
+        function switchView(viewName) {
+            const views = {
+                'home': document.getElementById('landing-view'),
+                'blog': document.getElementById('blog-view'),
+                'privacy': document.getElementById('privacy-view'),
+                'terms': document.getElementById('terms-view')
+            };
+            
+            // Hide all views first
+            Object.values(views).forEach(el => {
+                if(el) el.classList.add('hidden');
+            });
+            
+            // Show requested view
+            if (views[viewName]) {
+                views[viewName].classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+                // Update URL (optional but good for UX)
+                if (viewName === 'home') history.pushState(null, '', 'index.html');
+                else history.pushState(null, '', '#' + viewName);
+            }
+        }
+
+        // Navigation to specific sections from any view
+        function navigateToSection(sectionId) {
+            const landingView = document.getElementById('landing-view');
+            const otherViews = [
+                document.getElementById('blog-view'), 
+                document.getElementById('privacy-view'),
+                document.getElementById('terms-view')
+            ];
+            
+            // Ensure we are on landing view
+            if (landingView.classList.contains('hidden')) {
+                landingView.classList.remove('hidden');
+                otherViews.forEach(v => v.classList.add('hidden'));
+            }
+            
+            // Wait for DOM update then scroll
+            setTimeout(() => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 10);
+            
+             history.pushState(null, '', '#' + sectionId);
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('py-3', 'py-2');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('py-2', 'py-3');
+            }
+            
+            revealOnScroll();
+        });
+
+        // Simple Reveal Animation on Scroll
+        function revealOnScroll() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // Trigger once on load
+        window.onload = revealOnScroll;
+    </script>
+</body>
+</html>

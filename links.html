@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with EziNurse</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* The Main Card Container */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            width: 100%;
+            max-width: 400px; /* Limits width on desktop */
+            border-radius: 20px;
+            padding: 40px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        /* Header Section */
+        .profile-section {
+            margin-bottom: 30px;
+        }
+        
+        .profile-section h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .profile-section p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* The Links List */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Individual Button Styles */
+        .link-btn {
+            display: flex;
+            align-items: center; /* Aligns icon and text vertically */
+            padding: 15px 20px;
+            text-decoration: none;
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 50px; /* Pill shape */
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: #333;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        /* Hover Effect */
+        .link-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        /* Icon Styling */
+        .link-btn i {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px; /* Fixed width for alignment */
+            text-align: center;
+        }
+
+        /* Specific Colors for Brands */
+        .playstore i { color: #00865F; } /* Android Greenish */
+        .instagram i { color: #E1306C; }
+        .facebook i { color: #4267B2; }
+        .youtube i { color: #FF0000; }
+        .website i { color: #333333; }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-section">
+            <h1>EziNurse</h1>
+            <p>Connect with us on all platforms</p>
+        </div>
+
+        <div class="links">
+            
+            <a href="https://play.google.com/store/apps/details?id=com.ezinurse.learn" class="link-btn playstore" target="_blank">
+                <i class="fab fa-google-play"></i>
+                <span>Download App</span>
+            </a>
+
+            <a href="https://www.ezinurse.com" class="link-btn website" target="_blank">
+                <i class="fas fa-globe"></i>
+                <span>Visit Website</span>
+            </a>
+
+            <a href="https://www.instagram.com/ezi_nurse/" class="link-btn instagram" target="_blank">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+
+            <a href="https://www.facebook.com/people/Ezinurse/61573264140272/" class="link-btn facebook" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </a>
+
+            <a href="https://www.youtube.com/channel/UCFY2hc80poA0CnR6BHq0oSw" class="link-btn youtube" target="_blank">
+                <i class="fab fa-youtube"></i>
+                <span>YouTube Channel</span>
+            </a>
+
+        </div>
+
+        <footer>
+            &copy; 2024 EziNurse. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
